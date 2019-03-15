@@ -3,16 +3,11 @@ const hexToRgb = (hex: string): { [key: string]: number } => {
     throw new Error('hex length must be 3 or 6!');
   }
 
-  let result: { [key: string]: number } = { r: 0, g: 0, b: 0 };
-  const rgbValues: number[] = [0, 0, 0].map((value, i) => {
+  const [r, g, b]: number[] = [0, 0, 0].map((value, i) => {
     return hex.length === 6 ? parseInt(hex.slice(i * 2, (i + 1) * 2), 16) : parseInt(hex.slice(i, i + 1).repeat(2), 16);
   });
 
-  Object.keys(result).map((color, index) => {
-    result[color] = rgbValues[index];
-  });
-
-  return result;
+  return { r, g, b};
 };
 
 const rgbToHex = (r: number, g: number, b: number): string =>
